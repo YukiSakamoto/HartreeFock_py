@@ -110,13 +110,14 @@ def rhf(nelec):
     n_occ_orbitals = 1 # int(nelec/2)
     max_iteration = 10
     convergence_threshold = 1.e-4
+    dim = 2 # The number of Basis functions
 
     S = calc_S_H2()
-    #X = canonical_orthogonalization(S)
-    X = symmetric_orthogonalization(S)
+    #X = symmetric_orthogonalization(S)
+    X = canonical_orthogonalization(S)
     X_adj = np.matrix.getH(X)  # np.matrix.getH() returns the adjoint matrix
 
-    assert np.allclose( X_adj.dot(S.dot(X)), np.identity(2) ), \
+    assert np.allclose( X_adj.dot(S.dot(X)), np.identity(dim) ), \
             "X does not satisfy (X_adjoint * S * X)"
 
     Hcore = calc_Hcore_H2()
