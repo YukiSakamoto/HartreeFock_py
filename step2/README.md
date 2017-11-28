@@ -4,5 +4,5 @@
 
 ## Requirements:
 
--numpy
--scipy
+- numpy
+- scipy
